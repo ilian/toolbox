@@ -9,6 +9,7 @@ RUN apk add --no-cache \
   iproute2 \
   jq \
   nload \
+  procps \
   ranger \
   ripgrep \
   strace \
