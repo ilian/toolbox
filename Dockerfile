@@ -2,7 +2,6 @@ FROM alpine:edge
 RUN apk add --no-cache \
   bash \
   bind-tools \
-  busybox-suid \
   curl \
   file \
   htop \
@@ -14,9 +13,12 @@ RUN apk add --no-cache \
   ranger \
   ripgrep \
   strace \
+  sudo \
   sysstat \
   tcpdump \
   tmux \
   vim
+
+RUN echo 'ALL ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/allow-all-users
 
 ENTRYPOINT ["bash"]
