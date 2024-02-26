@@ -7,6 +7,7 @@ RUN apk add --no-cache \
   htop \
   iotop \
   iproute2 \
+  jattach \
   jq \
   nload \
   procps \
