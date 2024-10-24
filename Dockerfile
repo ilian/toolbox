@@ -1,24 +1,31 @@
 FROM alpine:edge
-RUN apk add --no-cache \
-  bash \
-  bind-tools \
-  curl \
-  file \
-  htop \
-  iotop \
-  iproute2 \
-  jattach \
-  jq \
-  nload \
-  procps \
-  ranger \
-  ripgrep \
-  strace \
-  sudo \
-  sysstat \
-  tcpdump \
-  tmux \
+
+RUN cat <<-EOF >> /etc/apk/world
+  bash
+  bind-tools
+  curl
+  file
+  htop
+  iotop
+  iproute2
+  jattach
+  jq
+  nload
+  procps
+  ranger
+  ripgrep
+  strace
+  sudo
+  sysstat
+  tcpdump
+  tmux
   vim
+EOF
+
+RUN apk add --no-cache
+
+RUN apk add --no-cache npm && \
+  npm install -g mongosh
 
 # Allow any user to escalate privileges
 RUN echo 'ALL ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/allow-all-users
