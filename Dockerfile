@@ -25,7 +25,9 @@ EOF
 RUN apk add --no-cache
 
 RUN apk add --no-cache npm && \
-  npm install -g mongosh
+  apk add --no-cache --virtual .mongosh-build-deps make g++ && \
+  npm install -g mongosh && \
+  apk del .mongosh-build-deps
 
 # Allow any user to escalate privileges
 RUN echo 'ALL ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/allow-all-users
